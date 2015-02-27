@@ -91,15 +91,21 @@ bool Personaje::attackCheck()
                     if( (*i)->id=="player")
                     {
                         (*i)->vida-=1;
-                        cout<<(*i)->id<<"TUS VIDAS SON "<<(*i)->vida<<endl;
-                            if((*i)->vida==0)
+                        cout<<(*i)->id<<"TUS VIDAS SON "<<(*i)->vida-1<<endl;
+
+                            if((*i)->vida==1)
                                 {
-                                    (*i)->muerto = true;
+                                    (*i)->perdistes=true;
+//                                    (*i)->muerto = true;
+
                                 }
                     }else
+                    {
                         (*i)->muerto=true;
+                        return true;
+                    }
 
-                    return true;
+
 
 
 

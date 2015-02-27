@@ -19,7 +19,6 @@ EnemigoVerde::EnemigoVerde(SDL_Renderer* renderer, list<Personaje*> *personajes)
     mapa_texturas["right"] = texturas;
 
     vector_actual_str = "right";
-    id="enemigo";
 
     rect.x = 500;
     rect.y = 250;
@@ -43,4 +42,10 @@ void EnemigoVerde::act()
     else
         rect.y++;
 
+     if(frame%100==0)
+        atacando = true;
+    else
+        atacando = false;
+
+    attackCheck();
 }

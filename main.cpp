@@ -16,8 +16,8 @@ using namespace std;
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Event Event;
-SDL_Texture *background;
-SDL_Rect rect_background;
+SDL_Texture *background,*win_lose;
+SDL_Rect rect_background, rect_win_loose;
 Mix_Music *music= NULL;
 Mix_Chunk *sound= NULL;
 
@@ -49,6 +49,14 @@ int main( int argc, char* args[] )
     rect_background.y = 0;
     rect_background.w = w;
     rect_background.h = h;
+
+    win_lose=(IMG_LoadTexture(renderer,"BG.png"));
+    rect_win_loose.x=0;
+    rect_win_loose.y=0;
+    rect_win_loose.w=w;
+    rect_win_loose.h=h;
+
+
 
 
     if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048)<0)
@@ -130,6 +138,21 @@ int main( int argc, char* args[] )
                 p--;
 
             }
+        for(list<Personaje*>::iterator p=personajes.begin();
+                p!=personajes.end();
+                p++)
+                {
+                    if((*p)->ganastes)
+                    {
+                        SDL_RenderCopy(renderer, win_lose, NULL, &rect_win_loose);
+                    }
+                    if((*p)->perdistes)
+                    {
+                         win_lose=(IMG_LoadTexture(renderer,"derrota.png"));
+                        SDL_RenderCopy(renderer, win_lose, NULL, &rect_win_loose);
+
+                    }
+                }
 
         SDL_RenderPresent(renderer);
 

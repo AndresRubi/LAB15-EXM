@@ -20,6 +20,7 @@ class Personaje
         SDL_Texture* hitbox_roja;
         SDL_Rect rect,hitbox;
         int vida;
+        bool perdistes=false, ganastes=false;
         string id="lol";
         int frame;
         int textura_actual_int;

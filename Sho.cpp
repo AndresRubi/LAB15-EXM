@@ -31,11 +31,11 @@ Sho::Sho(SDL_Renderer* renderer,list<Personaje*> *personajes)
 
 
     vector_actual_str = "right";
-
+    perdistes=false;
     rect.x = 0;
     rect.y = 0;
     id="player";
-    vida=5;
+    vida=4;
     init(renderer,personajes);
 }
 
@@ -88,18 +88,22 @@ void Sho::act()
         if(vector_actual_str == "walk_left")
             vector_actual_str = "left";
     }
-
+//    cout<<perdistes<<endl;
     attackCheck();
     if(attackCheck())
     {
         pentaKill+=1;
-        cout<<pentaKill<<endl;
+        cout<<"llevas : "<<pentaKill<<"/3 para ganar"<<endl;
+        if(pentaKill== 3)
+            ganastes=true;
     }
+    if(muerto)
+        perdistes=true;
 
-    if(pentaKill==3)
-        {
-            cout<<"Ganastes"<<pentaKill<<endl;
-        }
+//    if(pentaKill==3)
+//        {
+//            cout<<"Ganastes"<<pentaKill<<endl;
+//        }
 }
 
 Sho::~Sho()

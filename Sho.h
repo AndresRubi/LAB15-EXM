@@ -9,8 +9,8 @@ class Sho : public Personaje
         Sho(SDL_Renderer* renderer,list<Personaje*> *personajes);
         void act();
         Mix_Chunk *kick=NULL;
-        int pentaKill;
-        bool ganastes= false,perdistes=false;
+        int pentaKill=0;
+//        bool ganastes= false,perdistes=false;
         virtual ~Sho();
     protected:
     private:

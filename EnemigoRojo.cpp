@@ -17,7 +17,6 @@ EnemigoRojo::EnemigoRojo(SDL_Renderer* renderer, list<Personaje*> *personajes)
 
     mapa_texturas["left"]=texturas_left;
     mapa_texturas["right"]=texturas;
-id="enemigo";
     vector_actual_str = "right";
 
     rect.x = 750;
@@ -41,4 +40,11 @@ void EnemigoRojo::act()
         rect.x--;
     else
         rect.x++;
+
+         if(frame%100==0)
+        atacando = true;
+    else
+        atacando = false;
+
+    attackCheck();
 }

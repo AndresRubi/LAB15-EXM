@@ -19,7 +19,6 @@ EnemigoAzul::EnemigoAzul(SDL_Renderer* renderer, list<Personaje*> *personajes)
     mapa_texturas["right"]=texturas;
 
     vector_actual_str = "right";
-    id="enemigo";
     rect.x = 100;
     rect.y = 250;
 
@@ -35,12 +34,12 @@ void EnemigoAzul::act()
 {
     if(rect.x== 750)
         move= true;
-        else if(rect.x == -50)
+    else if(rect.x == -50)
         move = false;
-if(move)
-rect.x--;
-else
-rect.x++;
+    if(move)
+        rect.x--;
+    else
+        rect.x++;
 
     if(frame%100==0)
         atacando = true;
