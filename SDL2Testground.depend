@@ -743,7 +743,7 @@
 1425017112 /home/arubi/Downloads/BeatEmUp-master/EnemigoVerde.h
 	"Enemigo.h"
 
-1425017164 source:/home/arubi/Downloads/BeatEmUp-master/main.cpp
+1425018382 source:/home/arubi/Downloads/BeatEmUp-master/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<iostream>
@@ -753,6 +753,7 @@
 	"EnemigoAzul.h"
 	"EnemigoVerde.h"
 	"EnemigoRojo.h"
+	<SDL2/SDL_mixer.h>
 
 1425010697 /home/arubi/Downloads/BeatEmUp-master/Sho.h
 	"Personaje.h"

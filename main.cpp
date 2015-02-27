@@ -8,6 +8,8 @@
 #include "EnemigoAzul.h"
 #include "EnemigoVerde.h"
 #include "EnemigoRojo.h"
+#include <SDL2/SDL_mixer.h>
+
 
 using namespace std;
 
@@ -16,7 +18,8 @@ SDL_Renderer* renderer;
 SDL_Event Event;
 SDL_Texture *background;
 SDL_Rect rect_background;
-
+Mix_Music *music= NULL;
+Mix_Chunk *sound= NULL;
 
 int main( int argc, char* args[] )
 {
@@ -48,6 +51,16 @@ int main( int argc, char* args[] )
     rect_background.h = h;
 
 
+    if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048)<0)
+    {
+        printf("SDL_mixer Error %s\n", SDL_GetError());
+    }
+    music=Mix_LoadMUS("Gray Trip.ogg");
+    if(music == NULL)
+    {
+        printf("coulnt load  Error %s\n", Mix_GetError());
+    }
+
     list<Personaje*> personajes;
     personajes.push_back(new Sho(renderer,&personajes));
     personajes.push_back(new EnemigoAzul(renderer,&personajes));
@@ -68,7 +81,24 @@ int main( int argc, char* args[] )
                 return 0;
             }
         }
-
+        if(currentKeyStates[SDL_SCANCODE_M])
+        {
+            if(Mix_PlayingMusic()==0)
+            {
+                Mix_PlayMusic(music,-1);
+            }
+            else
+            {
+                if(Mix_PausedMusic()==1)
+                {
+                    Mix_ResumeMusic();
+                }
+                else
+                {
+                    Mix_PauseMusic();
+                }
+            }
+        }
 //        if(frame%200==0)
 //        {
 //            personajes.push_back(new EnemigoAzul(renderer,&personajes));
@@ -105,6 +135,9 @@ int main( int argc, char* args[] )
 
         frame++;
     }
+    Mix_FreeMusic(music);
+    music=NULL;
+
 
 	return 0;
 }
