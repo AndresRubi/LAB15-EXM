@@ -41,9 +41,25 @@ Sho::Sho(SDL_Renderer* renderer,list<Personaje*> *personajes)
 
 void Sho::act()
 {
+
+    if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048)<0)
+    {
+        printf("SDL_mixer Error %s\n", SDL_GetError());
+    }
+    kick=Mix_LoadWAV("kick.wav");
+    if(kick ==  NULL)
+    {
+        printf("coulnt load  Error %s\n", Mix_GetError());
+    }
+
+
     const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
     atacando = currentKeyStates[SDL_SCANCODE_SPACE];
+    if(currentKeyStates[SDL_SCANCODE_SPACE])
+    {
+        Mix_PlayChannel(-1,kick,0);
+    }
 
     if(currentKeyStates[SDL_SCANCODE_W])
     {
