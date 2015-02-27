@@ -89,6 +89,11 @@ int main( int argc, char* args[] )
                 return 0;
             }
         }
+        if(currentKeyStates[SDL_SCANCODE_ESCAPE])
+        {
+            return 0;
+        }
+
         if(currentKeyStates[SDL_SCANCODE_M])
         {
             if(Mix_PlayingMusic()==0)
